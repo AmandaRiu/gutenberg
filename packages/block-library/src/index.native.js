@@ -123,7 +123,7 @@ export const coreBlocks = [
  *
  */
 const registerBlock = ( block ) => {
-	if ( !block ) {
+	if ( ! block ) {
 		return;
 	}
 	const { metadata, settings, name } = block;
@@ -143,9 +143,9 @@ const registerBlockVariations = ( block ) => {
 	const { metadata, settings, name } = block;
 
 	sortBy( settings.variations, 'title' ).forEach( ( v ) => {
-		registerBlockType( `${name}-${v.name}`, {
+		registerBlockType( `${ name }-${ v.name }`, {
 			...metadata,
-			name: `${name}-${v.name}`,
+			name: `${ name }-${ v.name }`,
 			...settings,
 			icon: v.icon(),
 			title: v.title,
@@ -156,7 +156,7 @@ const registerBlockVariations = ( block ) => {
 
 // only enable code block for development
 // eslint-disable-next-line no-undef
-const devOnly = ( block ) => ( !!__DEV__ ? block : null );
+const devOnly = ( block ) => ( !! __DEV__ ? block : null );
 
 // eslint-disable-next-line no-unused-vars
 const iOSOnly = ( block ) =>
