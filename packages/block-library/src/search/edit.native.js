@@ -21,6 +21,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { buttonWithIcon, toggleLabel } from './icons';
 import ButtonPositionDropdown from './button-position-dropdown.native';
+import styles from './style.scss';
 
 /**
  * Constants
@@ -66,7 +67,7 @@ export default function SearchEdit( {
 			'button-only' === buttonPosition
 				? 'wp-block-search__button-only'
 				: undefined,
-			!buttonUseIcon && 'no-button' !== buttonPosition
+			! buttonUseIcon && 'no-button' !== buttonPosition
 				? 'wp-block-search__text-button'
 				: undefined,
 			buttonUseIcon && 'no-button' !== buttonPosition
@@ -91,6 +92,7 @@ export default function SearchEdit( {
 		return (
 			<TextInput
 				className="wp-block-search__input"
+				style={ styles[ 'wp-block-search__input' ] }
 				aria-label={ __( 'Optional placeholder text' ) }
 				label={ null }
 				value={ placeholder }
@@ -114,7 +116,7 @@ export default function SearchEdit( {
 					/>
 				) }
 
-				{ !buttonUseIcon && (
+				{ ! buttonUseIcon && (
 					<RichText
 						className="wp-block-search__button"
 						aria-label={ __( 'Button text' ) }
@@ -144,7 +146,7 @@ export default function SearchEdit( {
 					icon={ toggleLabel }
 					onClick={ () => {
 						setAttributes( {
-							showLabel: !showLabel,
+							showLabel: ! showLabel,
 						} );
 					} }
 					isActive={ showLabel }
@@ -161,7 +163,7 @@ export default function SearchEdit( {
 						icon={ buttonWithIcon }
 						onClick={ () => {
 							setAttributes( {
-								buttonUseIcon: !buttonUseIcon,
+								buttonUseIcon: ! buttonUseIcon,
 							} );
 						} }
 						isActive={ buttonUseIcon }
@@ -192,11 +194,11 @@ export default function SearchEdit( {
 
 			{ ( 'button-inside' === buttonPosition ||
 				'button-outside' === buttonPosition ) && (
-					<>
-						{ renderTextField() }
-						{ renderButton() }
-					</>
-				) }
+				<View style={ styles[ 'wp-block-search' ] }>
+					<View>{ renderTextField() }</View>
+					<View>{ renderButton() }</View>
+				</View>
+			) }
 
 			{ 'button-only' === buttonPosition && renderButton() }
 			{ 'no-button' === buttonPosition && renderTextField() }

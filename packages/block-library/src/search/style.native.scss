@@ -1,0 +1,10 @@
+.wp-block-search {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: row;
+}
+
+.wp-block-search__input {
+	flex-grow: 1;
+	border: 1px solid $gray-600;
+}
