@@ -71,7 +71,7 @@ export default function SearchEdit( {
 			'button-only' === buttonPosition
 				? 'wp-block-search__button-only'
 				: undefined,
-			!buttonUseIcon && 'no-button' !== buttonPosition
+			! buttonUseIcon && 'no-button' !== buttonPosition
 				? 'wp-block-search__text-button'
 				: undefined,
 			buttonUseIcon && 'no-button' !== buttonPosition
@@ -116,7 +116,7 @@ export default function SearchEdit( {
 					/>
 				) }
 
-				{ !buttonUseIcon && (
+				{ ! buttonUseIcon && (
 					<RichText
 						className="wp-block-search__button"
 						aria-label={ __( 'Button text' ) }
@@ -146,7 +146,7 @@ export default function SearchEdit( {
 					icon={ toggleLabel }
 					onClick={ () => {
 						setAttributes( {
-							showLabel: !showLabel,
+							showLabel: ! showLabel,
 						} );
 					} }
 					isActive={ showLabel }
@@ -163,7 +163,7 @@ export default function SearchEdit( {
 						icon={ buttonWithIcon }
 						onClick={ () => {
 							setAttributes( {
-								buttonUseIcon: !buttonUseIcon,
+								buttonUseIcon: ! buttonUseIcon,
 							} );
 						} }
 						isActive={ buttonUseIcon }
@@ -194,11 +194,11 @@ export default function SearchEdit( {
 
 			{ ( 'button-inside' === buttonPosition ||
 				'button-outside' === buttonPosition ) && (
-					<>
-						{ renderTextField() }
-						{ renderButton() }
-					</>
-				) }
+				<>
+					{ renderTextField() }
+					{ renderButton() }
+				</>
+			) }
 
 			{ 'button-only' === buttonPosition && renderButton() }
 			{ 'no-button' === buttonPosition && renderTextField() }
