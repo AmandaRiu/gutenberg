@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { View } from 'react-native';
+import { View, TextInput } from 'react-native';
 
 /**
  * WordPress dependencies
@@ -12,12 +12,7 @@ import {
 	BlockControls,
 	RichText,
 } from '@wordpress/block-editor';
-import {
-	ToolbarGroup,
-	Button,
-	ToolbarButton,
-	TextControl,
-} from '@wordpress/components';
+import { ToolbarGroup, Button, ToolbarButton } from '@wordpress/components';
 import { search } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 
@@ -71,7 +66,7 @@ export default function SearchEdit( {
 			'button-only' === buttonPosition
 				? 'wp-block-search__button-only'
 				: undefined,
-			! buttonUseIcon && 'no-button' !== buttonPosition
+			!buttonUseIcon && 'no-button' !== buttonPosition
 				? 'wp-block-search__text-button'
 				: undefined,
 			buttonUseIcon && 'no-button' !== buttonPosition
@@ -94,12 +89,15 @@ export default function SearchEdit( {
 
 	const renderTextField = () => {
 		return (
-			<TextControl
+			<TextInput
 				className="wp-block-search__input"
+				aria-label={ __( 'Optional placeholder text' ) }
 				label={ null }
 				value={ placeholder }
-				help={ __( 'Optional placeholder text' ) }
-				onChangeValue={ ( newVal ) =>
+				placeholder={
+					placeholder ? undefined : __( 'Optional placeholder…' )
+				}
+				onChangeText={ ( newVal ) =>
 					setAttributes( { placeholder: newVal } )
 				}
 			/>
@@ -116,7 +114,7 @@ export default function SearchEdit( {
 					/>
 				) }
 
-				{ ! buttonUseIcon && (
+				{ !buttonUseIcon && (
 					<RichText
 						className="wp-block-search__button"
 						aria-label={ __( 'Button text' ) }
@@ -146,7 +144,7 @@ export default function SearchEdit( {
 					icon={ toggleLabel }
 					onClick={ () => {
 						setAttributes( {
-							showLabel: ! showLabel,
+							showLabel: !showLabel,
 						} );
 					} }
 					isActive={ showLabel }
@@ -163,7 +161,7 @@ export default function SearchEdit( {
 						icon={ buttonWithIcon }
 						onClick={ () => {
 							setAttributes( {
-								buttonUseIcon: ! buttonUseIcon,
+								buttonUseIcon: !buttonUseIcon,
 							} );
 						} }
 						isActive={ buttonUseIcon }
@@ -194,11 +192,11 @@ export default function SearchEdit( {
 
 			{ ( 'button-inside' === buttonPosition ||
 				'button-outside' === buttonPosition ) && (
-				<>
-					{ renderTextField() }
-					{ renderButton() }
-				</>
-			) }
+					<>
+						{ renderTextField() }
+						{ renderButton() }
+					</>
+				) }
 
 			{ 'button-only' === buttonPosition && renderButton() }
 			{ 'no-button' === buttonPosition && renderTextField() }
