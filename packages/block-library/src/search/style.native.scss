@@ -1,10 +1,24 @@
-.wp-block-search {
+.searchBarContainer {
 	display: flex;
 	align-items: flex-start;
 	flex-direction: row;
 }
 
-.wp-block-search__input {
+.searchTextInput {
 	flex-grow: 1;
 	border: 1px solid $gray-600;
+}
+
+$block-padding-hoz: 6px;
+$block-padding-vert: 10px;
+.searchButton {
+	background: #f7f7f7;
+	padding-left: $block-padding-hoz;
+	padding-right: $block-padding-hoz;
+	padding-top: $block-padding-vert;
+	padding-bottom: $block-padding-vert;
+	border-width: $border-width;
+	margin: 2 * $grid-unit-20;
+	background-color: $button-fallback-bg;
+	color: $white;
 }
