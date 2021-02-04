@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 
 /**
  * WordPress dependencies
@@ -15,6 +15,7 @@ import {
 import { ToolbarGroup, Button, ToolbarButton } from '@wordpress/components';
 import { search } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -38,6 +39,9 @@ export default function SearchEdit( {
 	// eslint-disable-next-line no-unused-vars
 	isSelected,
 } ) {
+	// eslint-disable-next-line no-unused-vars
+	const [ buttonTextWidth, setButtonTextWidth ] = useState( 0 );
+
 	const {
 		label,
 		showLabel,
@@ -77,6 +81,23 @@ export default function SearchEdit( {
 	};
 
 	// eslint-disable-next-line no-unused-vars
+	const getButtonTextWidth = ( text ) => {
+		return (
+			<Text
+				onTextLayout={ ( { nativeEvent } ) => {
+					const textWidth =
+						nativeEvent.lines[ 0 ] && nativeEvent.lines[ 0 ].width;
+					if ( textWidth ) {
+						setButtonTextWidth( textWidth );
+					}
+				} }
+			>
+				{ text }
+			</Text>
+		);
+	};
+
+	// eslint-disable-next-line no-unused-vars
 	const getResizableSides = () => {
 		if ( 'button-only' === buttonPosition ) {
 			return {};
@@ -92,7 +113,7 @@ export default function SearchEdit( {
 		return (
 			<TextInput
 				className="wp-block-search__input"
-				style={ styles[ 'wp-block-search__input' ] }
+				style={ styles.searchTextInput }
 				aria-label={ __( 'Optional placeholder text' ) }
 				label={ null }
 				value={ placeholder }
@@ -108,17 +129,18 @@ export default function SearchEdit( {
 
 	const renderButton = () => {
 		return (
-			<View>
+			<View style={ styles.searchButton }>
 				{ buttonUseIcon && (
 					<Button
 						icon={ search }
 						className="wp-block-search__button"
+						style={ styles.searchButton }
 					/>
 				) }
 
 				{ ! buttonUseIcon && (
 					<RichText
-						className="wp-block-search__button"
+						style={ styles.searchButton }
 						aria-label={ __( 'Button text' ) }
 						placeholder={ __( 'Add button text…' ) }
 						withoutInteractiveFormatting
@@ -194,7 +216,7 @@ export default function SearchEdit( {
 
 			{ ( 'button-inside' === buttonPosition ||
 				'button-outside' === buttonPosition ) && (
-				<View style={ styles[ 'wp-block-search' ] }>
+				<View style={ styles.searchBarContainer }>
 					<View>{ renderTextField() }</View>
 					<View>{ renderButton() }</View>
 				</View>
