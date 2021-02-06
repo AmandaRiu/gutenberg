@@ -1,25 +1,36 @@
 .searchBarContainer {
-	display: flex;
+	flex:1;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
+	width: 100%;
 }
 
 .searchTextInput {
-	flex: 2;
-	flex-grow: 0;
+	flex: 1;
+	flex-grow: 1;
 	border: 1px solid $gray-600;
 	border-width: $border-width;
 	width: 100%;
 }
 
 $block-padding-hoz: 6px;
-.searchButton {
+$block-padding-vert: 10px;
+.buttonContainer {
 	background: #f7f7f7;
 	padding-left: $block-padding-hoz;
 	padding-right: $block-padding-hoz;
+	padding-top: $block-padding-vert;
+	padding-bottom: $block-padding-vert;
 	border-width: $border-width;
-	margin: 4px;
-	color: $black;
-	width: auto;
+	border-color: #ccc;
+	border-style: solid;
+	margin-left: 10px;
+	align-content: center;
+	align-items: center;
+}
+	
+.searchButtonText {
+	color: #32373c;
+	text-align: center;
 }

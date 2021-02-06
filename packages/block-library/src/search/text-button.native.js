@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
+import styles from './style.scss';
 
 export default function TextButton( { value, onChange } ) {
     const onTextChanged = ( html ) => {
@@ -19,13 +20,14 @@ export default function TextButton( { value, onChange } ) {
     };
 
     return (
-        <View>
+        <View style={ styles.buttonContainer }>
             <RichText
-                placeholder={ __( 'Add button text…' ) }
+                placeholder={ __( 'Button text…' ) }
                 value={ value }
                 identifier="text"
                 withoutInteractiveFormatting
                 onChange={ onTextChanged }
+                textAlign="center"
             />
         </View>
     );

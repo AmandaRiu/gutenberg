@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { View, TextInput, Text } from 'react-native';
+import { View, TextInput } from 'react-native';
 
 /**
  * WordPress dependencies
@@ -72,7 +72,7 @@ export default function SearchEdit( {
 			'button-only' === buttonPosition
 				? 'wp-block-search__button-only'
 				: undefined,
-			! buttonUseIcon && 'no-button' !== buttonPosition
+			!buttonUseIcon && 'no-button' !== buttonPosition
 				? 'wp-block-search__text-button'
 				: undefined,
 			buttonUseIcon && 'no-button' !== buttonPosition
@@ -103,14 +103,14 @@ export default function SearchEdit( {
 		return (
 			<View>
 				{ buttonUseIcon && (
-					<Button
-						icon={ search }
-						className="wp-block-search__button"
-						style={ styles.searchButton }
-					/>
+					<View style={ styles.buttonContainer }>
+						<Button
+							icon={ search }
+						/>
+					</View>
 				) }
 
-				{ ! buttonUseIcon && (
+				{ !buttonUseIcon && (
 					<TextButton
 						value={ buttonText }
 						onChange={ ( html ) =>
@@ -136,7 +136,7 @@ export default function SearchEdit( {
 					icon={ toggleLabel }
 					onClick={ () => {
 						setAttributes( {
-							showLabel: ! showLabel,
+							showLabel: !showLabel,
 						} );
 					} }
 					isActive={ showLabel }
@@ -153,7 +153,7 @@ export default function SearchEdit( {
 						icon={ buttonWithIcon }
 						onClick={ () => {
 							setAttributes( {
-								buttonUseIcon: ! buttonUseIcon,
+								buttonUseIcon: !buttonUseIcon,
 							} );
 						} }
 						isActive={ buttonUseIcon }
@@ -168,7 +168,7 @@ export default function SearchEdit( {
 	} );
 
 	return (
-		<View { ...blockProps }>
+		<View { ...blockProps } style={ { flex: 1, flexDirection: 'column' } }>
 			{ controls }
 
 			{ showLabel && (
@@ -184,11 +184,11 @@ export default function SearchEdit( {
 
 			{ ( 'button-inside' === buttonPosition ||
 				'button-outside' === buttonPosition ) && (
-				<View style={ styles.searchBarContainer }>
-					<View>{ renderTextField() }</View>
-					<View>{ renderButton() }</View>
-				</View>
-			) }
+					<View style={ styles.searchBarContainer }>
+						{ renderTextField() }
+						{ renderButton() }
+					</View>
+				) }
 
 			{ 'button-only' === buttonPosition && renderButton() }
 			{ 'no-button' === buttonPosition && renderTextField() }
