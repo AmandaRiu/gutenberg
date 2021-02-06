@@ -21,7 +21,8 @@ import { useState } from '@wordpress/element';
  * Internal dependencies
  */
 import { buttonWithIcon, toggleLabel } from './icons';
-import ButtonPositionDropdown from './button-position-dropdown.native';
+import ButtonPositionDropdown from './button-position-dropdown';
+import TextButton from './text-button';
 import styles from './style.scss';
 
 /**
@@ -80,35 +81,6 @@ export default function SearchEdit( {
 		);
 	};
 
-	// eslint-disable-next-line no-unused-vars
-	const getButtonTextWidth = ( text ) => {
-		return (
-			<Text
-				onTextLayout={ ( { nativeEvent } ) => {
-					const textWidth =
-						nativeEvent.lines[ 0 ] && nativeEvent.lines[ 0 ].width;
-					if ( textWidth ) {
-						setButtonTextWidth( textWidth );
-					}
-				} }
-			>
-				{ text }
-			</Text>
-		);
-	};
-
-	// eslint-disable-next-line no-unused-vars
-	const getResizableSides = () => {
-		if ( 'button-only' === buttonPosition ) {
-			return {};
-		}
-
-		return {
-			right: align === 'right' ? false : true,
-			left: align === 'right' ? true : false,
-		};
-	};
-
 	const renderTextField = () => {
 		return (
 			<TextInput
@@ -129,7 +101,7 @@ export default function SearchEdit( {
 
 	const renderButton = () => {
 		return (
-			<View style={ styles.searchButton }>
+			<View>
 				{ buttonUseIcon && (
 					<Button
 						icon={ search }
@@ -139,11 +111,7 @@ export default function SearchEdit( {
 				) }
 
 				{ ! buttonUseIcon && (
-					<RichText
-						style={ styles.searchButton }
-						aria-label={ __( 'Button text' ) }
-						placeholder={ __( 'Add button text…' ) }
-						withoutInteractiveFormatting
+					<TextButton
 						value={ buttonText }
 						onChange={ ( html ) =>
 							setAttributes( { buttonText: html } )
