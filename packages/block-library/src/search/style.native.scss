@@ -34,3 +34,10 @@ $block-padding-vert: 10px;
 	color: #32373c;
 	text-align: center;
 }
+
+.placeholder {
+	font-family: $default-regular-font;
+	font-size: 22px;
+	opacity: 0;
+	height: 0;
+}

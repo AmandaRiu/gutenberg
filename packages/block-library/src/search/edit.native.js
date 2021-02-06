@@ -116,6 +116,7 @@ export default function SearchEdit( {
 						onChange={ ( html ) =>
 							setAttributes( { buttonText: html } )
 						}
+						placeholder={ __( 'Add button text' ) }
 					/>
 				) }
 			</View>
