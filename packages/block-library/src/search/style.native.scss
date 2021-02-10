@@ -37,7 +37,7 @@ $block-padding-vert: 10px;
 
 .placeholder {
 	font-family: $default-regular-font;
-	font-size: 22px;
-	opacity: 0;
-	height: 0;
+	font-size: 16px;
+	min-height: 22px;
+	display: none;
 }
